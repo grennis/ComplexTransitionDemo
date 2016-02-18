@@ -10,6 +10,6 @@ public class ImageSource {
     }
 
     public static String getImageAtPosition(int position) {
-        return "http://lorempixel.com/600/300/" + Categories[position / CategorySize] + "/" + (position % CategorySize + 1);
+        return "http://lorempixel.com/600/600/" + Categories[position / CategorySize] + "/" + (position % CategorySize + 1);
     }
 }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView android:id="@+id/thumbnail_image"
+    <ImageView android:id="@+id/pager_image"
         tools:src="@mipmap/ic_launcher"
         android:scaleType="fitCenter"
         android:layout_width="match_parent"

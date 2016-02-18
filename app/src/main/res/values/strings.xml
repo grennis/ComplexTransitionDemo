@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ComplexTransitionDemo</string>
     <string name="thumbnails">Thumbnails</string>
+    <string name="pager">Pager</string>
 </resources>
