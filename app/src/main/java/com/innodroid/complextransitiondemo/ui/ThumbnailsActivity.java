@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.innodroid.complextransitiondemo.R;
 import com.innodroid.complextransitiondemo.adapters.ThumbnailRecyclerAdapter;
@@ -13,6 +14,8 @@ public class ThumbnailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thumbnails);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
         RecyclerView recycler = (RecyclerView) findViewById(R.id.recycler);
         recycler.setAdapter(new ThumbnailRecyclerAdapter(this));

@@ -1,0 +1,11 @@
+<resources>
+    <style name="AppTheme" parent="AppThemeBase">
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/change_image</item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_image</item>
+        <item name="android:windowEnterTransition">@transition/fade_no_flash</item>
+        <item name="android:windowExitTransition">@transition/fade_no_flash</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+    </style>
+</resources>
