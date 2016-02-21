@@ -35,6 +35,7 @@ public class ImagePagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = inflater.inflate(R.layout.item_pager, container, false);
 
+        view.setTag(R.id.index, position);
         ImageView image = (ImageView) view.findViewById(R.id.pager_image);
         Picasso.with(context).load(ImageSource.getImageAtPosition(position)).placeholder(R.mipmap.ic_launcher).into(image);
 
@@ -46,6 +47,16 @@ public class ImagePagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+
+    public View getCurrentView(ViewPager pager) {
+        for (int i=0; i<pager.getChildCount(); i++) {
+            if (pager.getChildAt(i).getTag(R.id.index) == pager.getCurrentItem()) {
+                return pager.getChildAt(i);
+            }
+        }
+
+        return null;
     }
 }
 

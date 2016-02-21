@@ -1,7 +1,10 @@
 package com.innodroid.complextransitiondemo.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,8 @@ import com.squareup.picasso.Picasso;
 
 public class ThumbnailRecyclerAdapter extends RecyclerView.Adapter<ThumbnailRecyclerAdapter.ViewHolder> {
     private Context context;
+
+    private static final String TRANSITION_NAME = "transition";
 
     public ThumbnailRecyclerAdapter(Context context) {
         this.context = context;
@@ -35,10 +40,29 @@ public class ThumbnailRecyclerAdapter extends RecyclerView.Adapter<ThumbnailRecy
         return ImageSource.ImageCount;
     }
 
-    private void showPagerActivity(int position) {
+    private void showPagerActivity(View view, int position) {
         Intent intent = new Intent(context, PagerActivity.class);
         intent.putExtra(PagerActivity.EXTRA_POSITION, position);
-        context.startActivity(intent);
+
+        Activity activity = (Activity)context;
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, TRANSITION_NAME);
+        ActivityCompat.startActivity(activity, intent, options.toBundle());
+    }
+
+    public View getViewAtIndex(RecyclerView recycler, int index) {
+        if (index >= 0) {
+            for (int i=0; i<recycler.getChildCount(); i++) {
+                View child = recycler.getChildAt(i);
+
+                int pos = recycler.getChildAdapterPosition(child);
+                if (pos == index) {
+                    return child;
+                }
+            }
+        }
+
+        // There is no view for this index - it is offscreen
+        return null;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -55,7 +79,7 @@ public class ThumbnailRecyclerAdapter extends RecyclerView.Adapter<ThumbnailRecy
         private View.OnClickListener ClickItemListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPagerActivity(getLayoutPosition());
+                showPagerActivity(v, getLayoutPosition());
             }
         };
     }
